@@ -3,6 +3,12 @@
 # My Secret
 secret.py
 
+# fonts
+*.ttf
+
+# wordcloud png files
+*.png
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
