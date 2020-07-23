@@ -27,7 +27,7 @@ texts = []
 
 for i in range(0, 200, 20):
     print(i)
-    articles = session.get_article_list(258728, i)
+    articles = session.get_article_list(secret.freeboard_num, i) # 크롤링 해올 게시판의 번호
     for article_dict in articles:
         texts.append(article_dict['article']['title'])
         texts.append(article_dict['article']['text'])
