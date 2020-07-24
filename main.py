@@ -15,7 +15,18 @@ def delete_word(word):
     else:
         return word
 
-font_path = 'paybooc Bold.ttf' # font 경로
+
+def pop_keyword(keywords, popstrings):
+    popwords = popstrings.split(" ")
+    for i in popwords:
+        try:
+            keywords.pop(i)
+        except:
+            pass
+    return keywords
+
+
+font_path = 'paybooc Bold.ttf'  # font 경로
 
 my_id = secret.secret["ID"]  # 개인의 ID 입력
 my_password = secret.secret["PASSWORD"]  # 개인의 Password 입력
@@ -27,7 +38,7 @@ texts = []
 
 for i in range(0, 200, 20):
     print(i)
-    articles = session.get_article_list(secret.freeboard_num, i) # 크롤링 해올 게시판의 번호
+    articles = session.get_article_list(secret.freeboard_num, i)  # 크롤링 해올 게시판의 번호
     for article_dict in articles:
         texts.append(article_dict['article']['title'])
         texts.append(article_dict['article']['text'])
@@ -61,13 +72,8 @@ krwordrank_cloud = WordCloud(
     height=800,
     background_color="white"
 )
-# try:
-#     keywords.pop("내가")
-#     keywords.pop("그냥")
-#     keywords.pop("근데")
-#     keywords.pop("너무")
-# except:
-#     pass
+popstrings = "내가 그냥 근데 너무"
+# keywords = pop_keyword(keywords, popstrings)
 
 krwordrank_cloud = krwordrank_cloud.generate_from_frequencies(keywords)
 
